@@ -1,0 +1,28 @@
+{
+  "name": "altschool-expressjs",
+  "version": "1.0.0",
+  "description": "This repo is for alt school Express framework task",
+  "main": "index.js",
+  "scripts": {
+    "start:task1": "node src/task1.js",
+    "start:task2": "node src/task2.js",
+    "dev:task1": "nodemon src/task1.js",
+    "dev:task2": "nodemon src/task2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyghdrogin/altschool-expressJs.git"
+  },
+  "author": "Emmanuel Omopariola (Hyghdrogin)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyghdrogin/altschool-expressJs/issues"
+  },
+  "homepage": "https://github.com/hyghdrogin/altschool-expressJs#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
