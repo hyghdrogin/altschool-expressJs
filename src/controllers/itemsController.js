@@ -1,8 +1,14 @@
-const { readDataFile, writeDataFile } = require("../utils/helpers.js");
+const { readDataFile, writeDataFile } = require("../database/itemsDatabaseLogic.js");
 const validItemAttribute = require("../utils/validation/itemValidation.js");
 
 const createItem = async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "admin") {
+      return res.status(403).send({
+        message: "You are unauthorized, only admin can create item"
+      })
+    }
     const itemData = req.body;
     const validItemData = validItemAttribute(itemData);
     if (validItemData) {
@@ -39,12 +45,12 @@ const createItem = async (req, res) => {
 const getItems = async (req, res) => {
   try {
     const { name } = req.query;
-    const nameCase = name.toLowerCase();
-
+    
     const itemRead = await readDataFile();
     let parsedReadItem = JSON.parse(itemRead);
-
+    
     if (name) {
+      const nameCase = name.toLowerCase();
       parsedReadItem = parsedReadItem.filter((item) => item.name === nameCase);
     }
 
@@ -85,11 +91,16 @@ const getItemById = async (req, res) => {
 
 const updateItem = async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "admin") {
+      return res.status(403).send({
+        message: "You are unauthorized, only admin can update item"
+      })
+    }
     const { id } = req.params;
     const itemData = req.body;
-    const validItemData = validItemAttribute(itemData);
     const convertedIdToNumber = Number(id);
-    if (validItemData && typeof convertedIdToNumber === "number") {
+    if (typeof convertedIdToNumber === "number") {
       const itemRead = await readDataFile();
       let parsedReadItem = JSON.parse(itemRead);
 
@@ -102,10 +113,7 @@ const updateItem = async (req, res) => {
         });
       }
       parsedReadItem[itemIndex] = {
-        id: convertedIdToNumber,
-        name: itemData.name.toLowerCase(),
-        price: itemData.price,
-        size: itemData.size,
+        ...parsedReadItem[itemIndex], ...itemData
       };
       await writeDataFile(parsedReadItem);
       return res.status(200).send({
@@ -127,6 +135,12 @@ const updateItem = async (req, res) => {
 
 const deleteItem = async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "admin") {
+      return res.status(403).send({
+        message: "You are unauthorized, only admin can delete item"
+      })
+    }
     const { id } = req.params;
     const convertedIdToNumber = Number(id);
 

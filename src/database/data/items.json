@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "cap",
+    "price": 40,
+    "size": "small"
+  },
+  {
+    "id": 2,
+    "name": "Bowl",
+    "price": 20,
+    "size": "medium"
+  }
+]

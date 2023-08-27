@@ -8,6 +8,15 @@ app.use(express.json());
 
 app.use("/", router);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to my expressJs task home page");
+})
+
+app.use((req, res) => res.status(404).send({
+  status: false,
+  message: "invalid route"
+}));
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  console.info(`Server is running on port ${port}`);
+})

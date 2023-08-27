@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "anu lekan",
+    "username": "hyghdrogin",
+    "password": "password",
+    "api_key": "hyghdrogin_password",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "name": "anu lekan",
+    "username": "pellite",
+    "password": "password",
+    "api_key": "pellite_password",
+    "role": "user"
+  },
+  {
+    "id": 3,
+    "name": "anu lekan",
+    "username": "alagba",
+    "password": "password",
+    "api_key": "alagba_password",
+    "role": "user"
+  }
+]

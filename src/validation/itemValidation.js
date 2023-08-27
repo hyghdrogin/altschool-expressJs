@@ -9,4 +9,4 @@ const validItemAttribute = (item) => {
   );
 };
 
-module.exports = validItemAttribute;
+module.exports = validItemAttribute
